@@ -8,8 +8,6 @@ function App() {
   return (
     <>
       <Header heading="Books" />
-      <Main />
-      <Footer classRoom="47-2" />
     </>
   );
 }
