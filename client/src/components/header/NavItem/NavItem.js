@@ -3,9 +3,7 @@ import styles from '../Header.module.css';
 
 const NavItem = ({ ShowLink, children }) => {
   return (
-    <li className={ShowLink ? styles.navItemDesktop : styles.navItem}>
-      {children}
-    </li>
+    <li className={ShowLink ? styles.ShowLink : styles.navItem}>{children}</li>
   );
 };
 
