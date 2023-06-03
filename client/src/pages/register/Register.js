@@ -99,10 +99,14 @@ function RegisterForm() {
           required
         />
         {err && <p className={styles.err}>{err}</p>}
-        <button onClick={handleSubmit} type="submit" />
+        <button onClick={handleSubmit} type="submit">
+          Register
+        </button>
       </form>
     </main>
   );
 }
+
+//<Button name="Register" onClick={handleSubmit} type="submit" />
 
 export default RegisterForm;

@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 const authRoutes = require('./routes/auth.js');
 const port = process.env.PORT || 8800;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 
 /*
