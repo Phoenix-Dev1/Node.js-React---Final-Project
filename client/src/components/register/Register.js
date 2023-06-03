@@ -3,7 +3,7 @@ import './Register.module.css';
 
 function RegisterForm() {
   return (
-    <div>
+    <main>
       <form className="form-container">
         <h2>Register Form</h2>
         <div className="name">
@@ -19,7 +19,7 @@ function RegisterForm() {
         </div>
         <button>Register Now</button>
       </form>
-    </div>
+    </main>
   );
 }
 

@@ -16,7 +16,7 @@ const Header = () => {
             <NavLink href="/register">Register</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/tutorials">Login</NavLink>
+            <NavLink href="/login">Login</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/releases">Link 3</NavLink>
