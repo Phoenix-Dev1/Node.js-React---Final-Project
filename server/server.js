@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const authRoutes = require('./routes/auth.js');
 const port = process.env.PORT || 8800;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 
 /*
 app.use((req, res, next) => {

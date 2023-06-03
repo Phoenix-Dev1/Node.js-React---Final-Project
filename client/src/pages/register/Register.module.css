@@ -13,8 +13,10 @@ form h1 {
 }
 
 form {
-  border: 1px solid black;
-  width: 50%;
+  border: 3px solid #5468ff;
+  position: absolute;
+  height: 80%;
+  width: 30%;
   color: white;
   background-color: rgba(255, 255, 255, 0.137);
   display: flex;
@@ -25,13 +27,6 @@ form {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-}
-
-form {
-  border: 5px solid black;
-  height: 80%;
-  position: absolute;
-  width: 30%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -40,27 +35,35 @@ form {
 .dataInputs {
   text-align: left;
   border: 1px solid black;
-  padding: 10px 10px;
-}
-
-input {
-  border: 1px solid black;
-  padding: 12px 10px;
+  padding: 10px;
+  width: 60%;
   border-radius: 10px;
-  border: none;
-  outline: none;
 }
 
-input[type='checkbox'] {
-  accent-color: black;
-  width: 15px;
-  height: 15px;
+/* Apply styles on focus and active state */
+input:focus,
+input:active {
+  background-color: rgb(53, 133, 239);
+}
+
+.err {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: red;
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {
   form {
     width: 90%;
     padding: 20px;
+  }
+
+  input:focus,
+  input:active {
+    background-color: rgb(53, 133, 239);
   }
 
   .dataInputs {

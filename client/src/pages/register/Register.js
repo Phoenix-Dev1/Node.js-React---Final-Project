@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/button/Button';
+import axios from 'axios';
 import styles from './Register.module.css';
 
 function RegisterForm() {
+  const [inputs, setInputs] = useState({
+    username: '',
+    email: '',
+    password: '',
+    city: '',
+    address: '',
+    phone: '',
+  });
+
+  // For displaying error for the user
+  const [err, setError] = useState(null);
+
+  // User Credentials
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  // Submitting the register form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('/auth/register', inputs);
+      window.location.href = '/login';
+    } catch (err) {
+      setError(err.response.data);
+    }
+  };
+
   return (
     <main>
       <form className={styles.form}>
         <h1>Register Form</h1>
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="text"
           id="username"
@@ -16,6 +46,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="email"
           id="email"
@@ -24,6 +55,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="password"
           id="password"
@@ -40,6 +72,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="text"
           id="city"
@@ -48,6 +81,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="text"
           id="address"
@@ -56,6 +90,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="tel"
           id="phone"
@@ -63,7 +98,8 @@ function RegisterForm() {
           placeholder="Phone Number"
           required
         />
-        <Button name="Register Now" />
+        {err && <p className={styles.err}>{err}</p>}
+        <button onClick={handleSubmit} type="submit" />
       </form>
     </main>
   );
