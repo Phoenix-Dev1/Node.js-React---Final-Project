@@ -12,16 +12,16 @@ const Header = () => {
       </div>
       <nav className={styles.nav}>
         <ul className={styles.links}>
-          <NavItem showDesktop>
-            <NavLink href="/docs">Link 1</NavLink>
+          <NavItem>
+            <NavLink href="/register">Register</NavLink>
           </NavItem>
-          <NavItem showDesktop>
-            <NavLink href="/tutorials">Link 2</NavLink>
+          <NavItem>
+            <NavLink href="/tutorials">Login</NavLink>
           </NavItem>
-          <NavItem showDesktop>
+          <NavItem>
             <NavLink href="/releases">Link 3</NavLink>
           </NavItem>
-          <NavItem showDesktop>
+          <NavItem>
             <NavLink href="/addons">Link 4</NavLink>
           </NavItem>
         </ul>

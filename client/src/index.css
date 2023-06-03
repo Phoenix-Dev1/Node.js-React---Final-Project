@@ -26,8 +26,12 @@ main {
   flex: 1;
 }
 footer {
-  border: 2px solid green;
+  display: flex;
+  height: 50px;
   background-color: lightgray;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #root {
