@@ -2,9 +2,9 @@ import React from 'react';
 import Route from './components/route/Route';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import Main from './components/main/Main';
-import RegisterForm from './components/register/Register';
-import Login from './components/login/Login';
+import Main from './pages/main/Main';
+import RegisterForm from './pages/register/Register';
+import Login from './pages/login/Login';
 
 const App = () => {
   return (
