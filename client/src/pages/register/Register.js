@@ -7,22 +7,14 @@ function RegisterForm() {
     <main>
       <form className={styles.form}>
         <h1>Register Form</h1>
-        <div className={styles.name}>
-          <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            placeholder="First Name"
-            required
-          />
-          <input
-            type="text"
-            id="lastname"
-            name="lastname"
-            placeholder="Last Name"
-            required
-          />
-        </div>
+        <input
+          className={styles.dataInputs}
+          type="text"
+          id="username"
+          name="username"
+          placeholder="User Name"
+          required
+        />
         <input
           className={styles.dataInputs}
           type="email"
@@ -45,6 +37,30 @@ function RegisterForm() {
           id="confirm_password"
           name="confirm_password"
           placeholder="Confirm Password"
+          required
+        />
+        <input
+          className={styles.dataInputs}
+          type="text"
+          id="city"
+          name="city"
+          placeholder="City"
+          required
+        />
+        <input
+          className={styles.dataInputs}
+          type="text"
+          id="address"
+          name="address"
+          placeholder="Address"
+          required
+        />
+        <input
+          className={styles.dataInputs}
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="Phone Number"
           required
         />
         <Button name="Register Now" />
