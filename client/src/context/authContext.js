@@ -9,9 +9,19 @@ export const AuthContextProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('user')) || null
   );
 
+  // State for registration completion
+  const [registrationComplete, setRegistrationComplete] = useState(false);
+
   // Logged in context
   const login = async (inputs) => {
     const res = await axios.post('/auth/login', inputs);
+    setCurrentUser(res.data);
+  };
+
+  const registered = async (inputs) => {
+    const res = await axios.post('/auth/register', inputs);
+    login(inputs);
+    setRegistrationComplete(true);
     setCurrentUser(res.data);
   };
 
@@ -20,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       await axios.get('/auth/logout');
       setCurrentUser(null);
-      window.location.href = '/'; // Redirect to home page
+      //window.location.href = '/'; // Redirect to home page
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +41,9 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider
+      value={{ currentUser, login, registered, registrationComplete, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

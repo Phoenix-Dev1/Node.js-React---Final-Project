@@ -6,8 +6,8 @@
   text-decoration: none;
 }
 
-form h1 {
-  color: white;
+.head {
+  color: rgb(186, 182, 182);
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
     1px 1px 0 black;
 }
@@ -48,11 +48,25 @@ input:active {
 
 .err {
   display: flex;
+  background-color: transparent;
+  text-shadow: none;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   color: red;
-  font-weight: 600;
+  font-weight: 700;
+}
+
+form p {
+  color: white;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+  background-color: rgb(53, 133, 239);
+}
+
+form a {
+  color: black;
+  text-shadow: none;
 }
 
 @media only screen and (max-width: 768px) {

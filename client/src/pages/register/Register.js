@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '../../components/button/Button';
+import { AuthContext } from '../../context/authContext';
 import axios from 'axios';
 import styles from './Register.module.css';
 
@@ -15,6 +16,8 @@ function RegisterForm() {
 
   // For displaying error for the user
   const [err, setError] = useState(null);
+  const [registrationComplete, setRegistrationComplete] = useState(false);
+  const { registered } = useContext(AuthContext);
 
   // User Credentials
   const handleChange = (e) => {
@@ -22,15 +25,15 @@ function RegisterForm() {
   };
 
   // Submitting the register form
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     try {
-      await axios.post('/auth/register', inputs);
-      window.location.href = '/login';
+      await registered(inputs);
+      setRegistrationComplete(true);
     } catch (err) {
       setError(err.response.data);
     }
-  };
+  }
 
   return (
     <main>
@@ -99,14 +102,13 @@ function RegisterForm() {
           required
         />
         {err && <p className={styles.err}>{err}</p>}
-        <button onClick={handleSubmit} type="submit">
-          Register
-        </button>
+        <Button name="Register" fun={handleSubmit} />
+        <p className={styles.register}>
+          Already have an account? <a href="/">Sign In</a>
+        </p>
       </form>
     </main>
   );
 }
-
-//<Button name="Register" onClick={handleSubmit} type="submit" />
 
 export default RegisterForm;

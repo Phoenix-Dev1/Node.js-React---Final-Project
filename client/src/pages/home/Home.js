@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './Main.module.css';
+import classes from './Home.module.css';
 
 function Main() {
   return (
-    <main className={classes.main}>
+    <main className={classes.home}>
       <p>02/06/2023</p>
     </main>
   );

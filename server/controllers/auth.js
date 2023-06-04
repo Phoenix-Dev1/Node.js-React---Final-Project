@@ -52,7 +52,6 @@ const login = (req, res) => {
 
     if (!isPasswordCorrect)
       return res.status(400).json('Wrong username or password');
-
     // Using the user unique id to create a token
     // jwtkey - can be replaced with a new key stored in the .env file
     const token = jwt.sign({ id: data[0].id }, 'jwtkey');
