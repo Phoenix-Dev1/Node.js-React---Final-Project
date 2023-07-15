@@ -15,20 +15,6 @@ const UpdateForm = ({ bin, onSubmit, exitUpdateMode }) => {
 
   return (
     <div className={classes.container}>
-      <input
-        type="text"
-        placeholder="Address"
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="City"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        required
-      />
       <select value={type} onChange={(e) => setType(e.target.value)} required>
         <option value={1}>Blue</option>
         <option value={2}>Carton</option>
@@ -37,6 +23,23 @@ const UpdateForm = ({ bin, onSubmit, exitUpdateMode }) => {
         <option value={5}>Purple</option>
         <option value={6}>Textile</option>
       </select>
+
+      <input
+        type="text"
+        placeholder="City"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        required
+      />
+
+      <input
+        type="text"
+        placeholder="Address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        required
+      />
+
       <Button name="Update Bin" fun={handleSubmit} />
       <Button name="Cancel" fun={exitUpdateMode} />
     </div>
