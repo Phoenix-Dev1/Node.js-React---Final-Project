@@ -39,7 +39,7 @@ const Header = () => {
             <NavLink href="/">Home</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/bins">Recycle Bins Locations</NavLink>
+            <NavLink href="/bins">Bins</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/recyclers">Recyclers</NavLink>

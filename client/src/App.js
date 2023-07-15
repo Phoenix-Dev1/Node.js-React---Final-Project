@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from './context/authContext';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
@@ -11,11 +11,10 @@ import Route from './components/route/Route';
 
 const App = () => {
   const { currentUser, registrationComplete } = useContext(AuthContext);
-  const showHeader = currentUser;
 
   return (
     <>
-      {showHeader && <Header />}
+      {currentUser && <Header />}
       <Route path="/">
         {currentUser ? (
           <Home />
