@@ -28,9 +28,16 @@ export const AuthContextProvider = ({ children }) => {
   // Logged out context
   const logout = async () => {
     try {
-      await axios.get('/auth/logout');
       setCurrentUser(null);
-      //window.location.href = '/'; // Redirect to home page
+      localStorage.clear(); // Clear the local storage
+      await axios.get('/auth/logout');
+
+      // Clear the JWT token from the cookie
+      document.cookie =
+        'access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+      // Optionally, you can redirect to the home page after successful logout
+      // window.location.href = '/';
     } catch (error) {
       console.log(error);
     }

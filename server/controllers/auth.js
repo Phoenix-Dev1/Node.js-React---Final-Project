@@ -4,14 +4,13 @@ const jwt = require('jsonwebtoken');
 
 const register = (req, res) => {
   // Check Existing user
-  const q = 'SELECT * FROM users WHERE email = ? OR username = ?';
+  const q = 'SELECT * FROM users WHERE email = ? OR username = ? OR phone = ?';
 
   /* Testing Data */
   //console.log(req.body);
-  db.query(q, [req.body.email, req.body.name], (err, data) => {
+  db.query(q, [req.body.email, req.body.name, req.body.phone], (err, data) => {
     if (err) return res.json(err);
-    if (data.length)
-      return res.status(409).json('Username/Email address already exists!');
+    if (data.length) return res.status(409).json('User already exists!');
 
     // Encrypt the password and create a user
     const salt = bcrypt.genSaltSync(10);
@@ -70,16 +69,10 @@ const login = (req, res) => {
 };
 
 const logout = (req, res) => {
+  // Clear the local storage on the client-side
   res
-    .clearCookie('access_token', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      expires: new Date(0),
-      path: '/',
-    })
     .status(200)
-    .json('User has been logged out');
+    .json({ message: 'User has been logged out', clearLocalStorage: true });
 };
 
 module.exports = {

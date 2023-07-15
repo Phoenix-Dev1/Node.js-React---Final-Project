@@ -1,18 +1,18 @@
 import React from 'react';
 import styles from '../Header.module.css';
 
-const NavItem = ({ ShowLink, children }) => {
+export const NavItem = ({ ShowLink, children }) => {
   return (
-    <li className={ShowLink ? styles.ShowLink : styles.navItem}>{children}</li>
+    <div className={ShowLink ? styles.ShowLink : styles.navItem}>
+      {children}
+    </div>
   );
 };
 
-const NavLink = ({ href, children }) => {
+export const NavLink = ({ href, children }) => {
   return (
     <a href={href} className={styles.navLink}>
       {children}
     </a>
   );
 };
-
-export { NavItem, NavLink };

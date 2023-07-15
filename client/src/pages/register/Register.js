@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Button from '../../components/button/Button';
 import { AuthContext } from '../../context/authContext';
-import axios from 'axios';
+import { validateForm } from './ValidateForm';
 import styles from './Register.module.css';
 
 function RegisterForm() {
@@ -12,12 +12,17 @@ function RegisterForm() {
     city: '',
     address: '',
     phone: '',
+    confirm_password: '',
   });
 
   // For displaying error for the user
   const [err, setError] = useState(null);
   const [registrationComplete, setRegistrationComplete] = useState(false);
   const { registered } = useContext(AuthContext);
+
+  if (registrationComplete != null) {
+    console.log('User is Logged in');
+  }
 
   // User Credentials
   const handleChange = (e) => {
@@ -27,11 +32,15 @@ function RegisterForm() {
   // Submitting the register form
   async function handleSubmit(e) {
     e.preventDefault();
-    try {
-      await registered(inputs);
-      setRegistrationComplete(true);
-    } catch (err) {
-      setError(err.response.data);
+    setError(null); // Reset the error state
+    const isValid = validateForm(inputs, setError);
+    if (isValid) {
+      try {
+        await registered(inputs);
+        setRegistrationComplete(true);
+      } catch (err) {
+        setError(err.response.data);
+      }
     }
   }
 
@@ -67,6 +76,7 @@ function RegisterForm() {
           required
         />
         <input
+          onChange={handleChange}
           className={styles.dataInputs}
           type="password"
           id="confirm_password"

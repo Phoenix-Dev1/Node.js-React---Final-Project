@@ -67,7 +67,7 @@ function LoginForm() {
           <p className={styles.register}>
             Don't have an account?{' '}
             <a href="/" onClick={handleRegisterLinkClick}>
-              Click here to register
+              Click to Register
             </a>
           </p>
         </form>
