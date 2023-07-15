@@ -9,9 +9,8 @@ const port = process.env.PORT || 8800;
 app.use(express.json());
 app.use(cookieParser());
 
-// Serve static files from the 'public' / 'src' directory
+// Serve static files from the 'src' directory
 app.use(express.static(path.join(__dirname, 'src')));
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/bins', binRoutes);

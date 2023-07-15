@@ -21,7 +21,7 @@ function RegisterForm() {
   const { registered } = useContext(AuthContext);
 
   if (registrationComplete != null) {
-    console.log('User is Logged in');
+    // console.log('User is Logged in');
   }
 
   // User Credentials

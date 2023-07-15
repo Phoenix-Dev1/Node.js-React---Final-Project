@@ -16,20 +16,11 @@ const Header = () => {
         {currentUser && (
           <li className={styles.userName}>{currentUser.username}</li>
         )}
-        {!currentUser && (
-          <NavItem>
-            <NavLink href="/register">Register</NavLink>
-          </NavItem>
-        )}
-        {currentUser ? (
+        {currentUser && (
           <NavItem>
             <NavLink href="/">
               <li onClick={logout}>Logout</li>
             </NavLink>
-          </NavItem>
-        ) : (
-          <NavItem>
-            <NavLink href="/login">Login</NavLink>
           </NavItem>
         )}
       </div>
@@ -40,9 +31,6 @@ const Header = () => {
           </NavItem>
           <NavItem>
             <NavLink href="/bins">Bins</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/recyclers">Recyclers</NavLink>
           </NavItem>
         </ul>
       </nav>
