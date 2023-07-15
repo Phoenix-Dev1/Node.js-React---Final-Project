@@ -1,10 +1,11 @@
 const { db } = require('../db.js');
 
 const getBins = (req, res) => {
-  const q = 'SELECT * FROM bins';
+  const q =
+    'SELECT bins.id, bins.address, bins.city, bins.last_modified, categories.name AS type FROM bins JOIN categories ON bins.type = categories.id';
   db.query(q, (err, data) => {
     if (err) {
-      console.error(err); // Log the error message
+      console.error(err);
       return res.status(500).send(err);
     }
     return res.status(200).json(data);
@@ -38,7 +39,7 @@ const createBin = (req, res) => {
 };
 
 const updateBin = (req, res) => {
-  console.log('In update Controller');
+  //console.log('In update Controller');
   const binId = req.params.id;
   const { address, city, type, last_modified } = req.body;
   const q =
