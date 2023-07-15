@@ -1,16 +1,16 @@
 import axios from 'axios';
 
-export async function fetchBins() {
-  //console.log(id);
+export const fetchBins = async () => {
   try {
-    const res = await axios.get(`/bins`);
-    //console.log(res.data);
-    return res.data;
-  } catch (err) {
-    console.log(err);
-    return null;
+    const response = await fetch('/bins');
+    const data = await response.json();
+    const sortedData = data.sort((a, b) => a.type - b.type); // Sort the data by type
+    return sortedData;
+  } catch (error) {
+    console.error('Error fetching bins:', error);
+    throw error;
   }
-}
+};
 
 export const deleteBin = async (id) => {
   try {

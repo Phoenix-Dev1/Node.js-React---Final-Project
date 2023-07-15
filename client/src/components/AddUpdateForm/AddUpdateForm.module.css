@@ -1,0 +1,11 @@
+.container {
+  border: solid white 2px;
+}
+
+input {
+  height: 42px;
+}
+
+select {
+  height: 42px;
+}

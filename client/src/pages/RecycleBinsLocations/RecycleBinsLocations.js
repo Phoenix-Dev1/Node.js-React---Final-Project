@@ -6,8 +6,7 @@ import {
   updateBin,
   formatDate,
 } from '../../utils/BinsUtils';
-import BinForm from '../../components/binForm/BinForm';
-import UpdateForm from '../../components/updateForm/UpdateForm';
+import AddUpdateForm from '../../components/AddUpdateForm/AddUpdateForm';
 import Button from '../../components/button/Button';
 import classes from './RecycleBinsLocations.module.css';
 
@@ -24,7 +23,7 @@ function RecycleBinsLocations() {
     };
 
     fetchData();
-  }, []);
+  }, [bins]); // if bins change the data will be fetched again
 
   // Deleting a bin
   const handleDelete = async (id) => {
@@ -43,14 +42,21 @@ function RecycleBinsLocations() {
     }
   };
 
-  // Add a bin
-  const handleAddBin = async (bin) => {
+  // Add or Update a bin
+  const handleSubmit = async (bin) => {
     try {
-      const data = await addBin(bin);
-      setBins((prevBins) => [...prevBins, data]);
-      console.log('Bin added successfully!');
+      if (bin.id) {
+        await updateBin(bin);
+        setBins((prevBins) => prevBins.map((b) => (b.id === bin.id ? bin : b)));
+        console.log('Bin updated successfully!');
+      } else {
+        const data = await addBin(bin);
+        setBins((prevBins) => [...prevBins, data]);
+        console.log('Bin added successfully!');
+      }
+      exitUpdateMode();
     } catch (error) {
-      console.error('Error adding bin:', error);
+      console.error('Error:', error);
     }
   };
 
@@ -66,32 +72,14 @@ function RecycleBinsLocations() {
     setSelectedBin(null);
   };
 
-  // Update a bin
-  const handleUpdate = async (updatedBin) => {
-    try {
-      await updateBin(updatedBin);
-      setBins((prevBins) =>
-        prevBins.map((bin) => (bin.id === updatedBin.id ? updatedBin : bin))
-      );
-      console.log('Bin updated successfully!');
-      exitUpdateMode();
-    } catch (error) {
-      console.error('Error updating bin:', error);
-    }
-  };
-
   return (
     <main className={classes.container}>
       <h1>Bins Locations</h1>
-      {updateMode ? (
-        <UpdateForm
-          bin={selectedBin}
-          onSubmit={handleUpdate}
-          exitUpdateMode={exitUpdateMode}
-        />
-      ) : (
-        <BinForm onSubmit={handleAddBin} />
-      )}
+      <AddUpdateForm
+        bin={selectedBin}
+        onSubmit={handleSubmit}
+        exitUpdateMode={exitUpdateMode}
+      />
       {bins.length === 0 ? (
         <p>No bins found.</p>
       ) : (
