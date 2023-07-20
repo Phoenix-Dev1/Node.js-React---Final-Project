@@ -2,11 +2,9 @@ import React, { useContext } from 'react';
 import { AuthContext } from './context/authContext';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import RegisterForm from './pages/register/Register';
-import Login from './pages/login/Login';
+import LoginRegister from './pages/LoginRegister/LoginRegister';
 import Home from './pages/home/Home';
 import RecycleBinsLocations from './pages/RecycleBinsLocations/RecycleBinsLocations';
-import Recyclers from './pages/Recyclers/Recyclers';
 import Route from './components/route/Route';
 
 const App = () => {
@@ -16,18 +14,17 @@ const App = () => {
     <>
       {currentUser && <Header />}
       <Route path="/">
-        {currentUser ? (
+        {currentUser ? ( // If the usee logged in
           <Home />
-        ) : !registrationComplete ? (
-          <Login />
+        ) : !registrationComplete ? ( // if registration completed
+          <LoginRegister />
         ) : (
-          <RegisterForm />
+          <LoginRegister />
         )}
       </Route>
       <Route path="/bins">
-        {currentUser ? <RecycleBinsLocations /> : <Login />}
+        {currentUser ? <RecycleBinsLocations /> : <LoginRegister />}
       </Route>
-      <Route path="/recyclers">{currentUser ? <Recyclers /> : <Login />}</Route>
       <Footer />
     </>
   );

@@ -15,6 +15,7 @@ function RecycleBinsLocations() {
   const [updateMode, setUpdateMode] = useState(false);
   const [selectedBin, setSelectedBin] = useState(null);
 
+  console.log(updateMode);
   // Fetching all bins
   useEffect(() => {
     const fetchData = async () => {

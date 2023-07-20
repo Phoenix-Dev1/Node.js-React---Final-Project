@@ -15,12 +15,6 @@ app.use(express.static(path.join(__dirname, 'src')));
 app.use('/api/auth', authRoutes);
 app.use('/api/bins', binRoutes);
 
-/*
-app.use((req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
-*/
-
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

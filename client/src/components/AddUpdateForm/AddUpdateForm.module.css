@@ -2,6 +2,10 @@
   border: solid white 2px;
 }
 
+.successMessage {
+  color: white;
+  text-align: center;
+}
 input {
   height: 42px;
 }

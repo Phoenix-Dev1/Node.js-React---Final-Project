@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Gets all the bins list
 export const fetchBins = async () => {
   try {
     const response = await fetch('/bins');
@@ -12,6 +13,7 @@ export const fetchBins = async () => {
   }
 };
 
+// Delete a bin by id
 export const deleteBin = async (id) => {
   try {
     const res = await axios.delete(`/bins/${id}`);
@@ -22,6 +24,7 @@ export const deleteBin = async (id) => {
   }
 };
 
+// Adds new bin to the db and update frontend
 export const addBin = async (bin) => {
   try {
     const res = await axios.post('/bins', bin);
@@ -32,6 +35,7 @@ export const addBin = async (bin) => {
   }
 };
 
+// Update Bin by id
 export const updateBin = async (bin) => {
   try {
     const res = await axios.put(`/bins/${bin.id}`, bin);
@@ -42,6 +46,7 @@ export const updateBin = async (bin) => {
   }
 };
 
+// formatting the date for client side
 export const formatDate = (dateString) => {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-GB');

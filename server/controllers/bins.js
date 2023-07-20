@@ -1,5 +1,6 @@
 const { db } = require('../db.js');
 
+// Get all bins from bins table using the categories linking table
 const getBins = (req, res) => {
   const q =
     'SELECT bins.id, bins.address, bins.city, bins.last_modified, categories.name AS type FROM bins JOIN categories ON bins.type = categories.id';
@@ -12,6 +13,7 @@ const getBins = (req, res) => {
   });
 };
 
+// Deletes a bin from the DB by id
 const deleteBin = (req, res) => {
   const binId = req.params.id;
   const q = 'DELETE FROM bins WHERE id = ?';
@@ -24,6 +26,7 @@ const deleteBin = (req, res) => {
   });
 };
 
+// Adding new bin to the DB based on user inputs
 const createBin = (req, res) => {
   const { address, city, type, last_modified } = req.body;
   const q =
